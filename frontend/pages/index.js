@@ -6,8 +6,19 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: "Home",
+            page: PAGES.HOME,
         };
+
+        this.renderPage = this.renderPage.bind(this);
+    }
+
+    renderPage() {
+        switch(this.state.page) {
+            case PAGES.HOME:
+                return <Home />;
+            default:
+                return <Home />;
+        }
     }
 
     render() {

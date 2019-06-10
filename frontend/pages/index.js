@@ -1,5 +1,6 @@
 import Head from "next/head";
 import React, {Component} from "react";
+import Edit from "../components/Edit";
 
 class Main extends Component {
     constructor(props) {
@@ -18,6 +19,9 @@ class Main extends Component {
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
                     <script type="text/javascript" src="/static/materialize.js"></script>
                 </Head>
+                <Edit>
+                    
+                </Edit>
             </div>
         )
     }

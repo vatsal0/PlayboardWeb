@@ -1,6 +1,13 @@
 import Head from "next/head";
-import React, {Component} from "react";
+import React, { Component } from "react";
+
+import Home from '../components/Home';
 import Edit from "../components/Edit";
+
+const PAGES = {
+    HOME: <Home />,
+    EDIT: <Edit />
+};
 
 class Main extends Component {
     constructor(props) {
@@ -13,12 +20,7 @@ class Main extends Component {
     }
 
     renderPage() {
-        switch(this.state.page) {
-            case PAGES.HOME:
-                return <Home />;
-            default:
-                return <Home />;
-        }
+        return this.state.page;
     }
 
     render() {
@@ -30,9 +32,7 @@ class Main extends Component {
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
                     <script type="text/javascript" src="/static/materialize.js"></script>
                 </Head>
-                <Edit>
-                    
-                </Edit>
+                { this.renderPage() }
             </div>
         )
     }

@@ -9,7 +9,7 @@ const Background = styled.div`
     left: 0;
     top: 0;
     overflow: hidden;
-`
+`;
 
 const Box = posed.div({
     hoverable: true,
@@ -18,7 +18,7 @@ const Box = posed.div({
     init: { scale: 1 },
     hover: { scale: 1.2 },
     drag: { scale: 1.1 }
-})
+});
 
 class Edit extends Component {
     constructor(props) {

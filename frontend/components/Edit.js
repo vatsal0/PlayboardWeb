@@ -2,7 +2,14 @@ import React, {Component} from "react";
 import posed from "react-pose";
 import styled from "styled-components";
 
-
+const Background = styled.div`
+    background: #F1C38E;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+`
 
 const Box = posed.div({
     hoverable: true,
@@ -36,7 +43,10 @@ class Edit extends Component {
     render() {
         return (
             <div>
-                <Box style={{
+                <Background>
+                    
+                </Background>
+                {/* <Box style={{
                     width: "100px",
                     height: "100px",
                     background: "#ff1c68",
@@ -44,7 +54,7 @@ class Edit extends Component {
                 }}
                     
                 className = "Box" pose = {"none"}>
-                </Box>
+                </Box> */}
             </div>
         )
     }

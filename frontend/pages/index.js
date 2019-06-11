@@ -1,6 +1,8 @@
 import Head from "next/head";
 import React, { Component } from "react";
 
+import Navbar from '../components/Navbar';
+
 import Home from '../components/Home';
 import Edit from "../components/Edit";
 
@@ -32,7 +34,12 @@ class Main extends Component {
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
                     <script type="text/javascript" src="/static/materialize.js"></script>
                 </Head>
-                { this.renderPage() }
+                <body>
+                    <Navbar />
+                    <main>
+                        { this.renderPage() }
+                    </main>
+                </body>
             </div>
         )
     }

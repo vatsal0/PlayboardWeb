@@ -1,8 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import posed from "react-pose";
 import styled from "styled-components";
-
-
 
 const Box = posed.div({
     hoverable: true,

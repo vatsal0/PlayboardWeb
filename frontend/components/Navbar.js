@@ -5,7 +5,7 @@ class Navbar extends Component {
     render() {
         return (
             <nav>
-                <a>This is the Navbar</a>
+                <a>This the Navbar</a>
             </nav>
         )
     }

@@ -23,9 +23,7 @@ class Main extends Component {
     }
 
     onPlayNavigate(name) {
-        console.log(name);
-        console.log("navigating");
-        this.setState({ page: "Edit"});
+        this.setState({ page: "Edit", play: name});
     }
 
     renderPage() {

@@ -6,7 +6,7 @@ import Animator from "../lib/Animator.js";
 const Background = styled.div`
     background: #F1C38E;
     width: 100vw;
-    height: 90vh;
+    height: 80vh;
     left: 0;
     top: 0;
     overflow: hidden;
@@ -14,7 +14,7 @@ const Background = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto 100%;
-`;
+`
 
 const BottomBar = styled.div`
     background: #C1C38E;
@@ -24,16 +24,16 @@ const BottomBar = styled.div`
     margin-left: auto;
     margin-right: auto;
 `
-
 const Dragger = posed.div({
     draggable: "x",
-    dragBounds: {left: "0%", right: "2200%"},
+    dragBounds: ({bounds}) => bounds(),
+    //open: {x: ({pos}) => pos/10}
 })
 
 const Player = posed.div({
     draggable: true,
     dragBounds: ({bounds}) => bounds,
-});
+})
 
 const Container = styled.div`
     height: 75vh;
@@ -43,7 +43,8 @@ const Container = styled.div`
     display: block;
     top: 10%;
     position: relative;
-`;
+`
+
 
 class Edit extends Component {
     constructor(props) {
@@ -53,21 +54,22 @@ class Edit extends Component {
             players: [],
             playerPositions: [],
             update: undefined,
+            currentFrame: 0
         };
     }
 
     componentDidMount() {
         console.log("Mounted");
-        let angle = 0;
-        this.update = setInterval(() => {
-            angle++;
-            console.log("Setting...");
-            this.setState({angle: angle});
-        }, 50);
+        setInterval(() => {
+            if (this.state.dragging) {
+                let pos = this.state.playerPositions[this.state.i]
+                this.setState({currentFrame: Animator.updateFrame(this.state.i, pos.x, pos.y)});
+            }
+        },200/3)
     }
 
     componentWillUnmount() {
-        clearInterval(this.update);
+        
     }
 
     render() {
@@ -97,13 +99,11 @@ class Edit extends Component {
                                         y: y => this.state.playerPositions[i].y = (y + oy - rect.top)*100/rect.height
                                     }}
                                     onDragStart={(e) => {
-                                        this.state.update = setInterval(() => {
-                                            let pos = this.state.playerPositions[i]
-                                            let frame = Animator.updateFrame(i, pos.x, pos.y);
-                                        },200/3)
+                                        this.state.i = i;
+                                        this.state.dragging = true;
                                     }}
                                     onDragEnd={(e) => {
-                                        clearInterval(this.state.update);
+                                        this.state.dragging = false;
                                     }}>
                                     </Player>
                                 )
@@ -116,16 +116,35 @@ class Edit extends Component {
                     
                 </Background>
                 <BottomBar className="footer" id="bottom">
-                    <Dragger style={{
+                    
+                    <Dragger id="dragger" style={{
                         width: "5vh",
                         height: "5vh",
                         borderRadius: "10vh",
-                        position: "absolute",
-                        left: 0,
-                        top: "92.5vh",
+                        position: "relative",
+                        left: (this.state.currentFrame*110/360) + "vh",
+                        top: "25%",
                         background: "#ff1c68",
-                        transformOrigin: "50% 50%"
-                    }} bounds = {{left: "0%", right: "1000%"}}>
+                        transformOrigin: "0% 0%"
+                    }}
+                    onValueChange = {{
+                        x: x => {
+                            let rect = document.getElementById("bottom").getBoundingClientRect();
+                            let drect = document.getElementById("dragger").getBoundingClientRect();
+                        }
+                    }}
+                    onDragEnd={(e) => {
+                        let rect = document.getElementById("bottom").getBoundingClientRect();
+                        let drect = document.getElementById("dragger").getBoundingClientRect();
+                        this.setState({currentFrame: (360*(drect.left - rect.left)/rect.width)})
+                    }}
+                    bounds = {() => {
+                        let rect = document.getElementById("bottom").getBoundingClientRect();
+                        let drect = document.getElementById("dragger").getBoundingClientRect();
+                        console.log({left: rect.left - drect.left, right: rect.right - drect.right})
+                        return {left: rect.left - drect.left, right: rect.right - drect.right}
+                    }}
+                    >
 
                     </Dragger>
                 </BottomBar>

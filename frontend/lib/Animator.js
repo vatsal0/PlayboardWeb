@@ -31,7 +31,7 @@ class Animator {
             currentFrame++;
             return currentFrame;
         }
-        return false;
+        return currentFrame;
     }
 
     //Start running the animation at a normal rate from an optional start frame

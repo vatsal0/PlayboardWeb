@@ -2,23 +2,23 @@ import Head from "next/head";
 import React, { Component } from "react";
 
 import Navbar from '../components/Navbar';
-import Background from '../components/Background';
+import BackgroundContainer from '../components/Background';
 
 import Home from '../components/Home';
 import Edit from "../components/Edit";
 import Playback from "../components/Playback";
 
 const PAGES = {
-    HOME: <Home />,
-    EDIT: <Edit />,
-    PLAYBACK: <Playback />
+    "Home": <Home />,
+    "Edit": <Edit />,
+    "Playback": <Playback />
 };
 
 class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: "PLAYBACK",
+            page: "Home",
         };
 
         this.renderPage = this.renderPage.bind(this);
@@ -41,10 +41,11 @@ class Main extends Component {
                     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossOrigin="anonymous"></script>
                 </Head>
                 <body style={{backgroundColor: "black"}}>
-                    <Background />
                     <Navbar />
                     <main>
-                        { this.renderPage() }
+                        <BackgroundContainer>
+                            { this.renderPage() }
+                        </BackgroundContainer>
                     </main>
                 </body>
             </div>

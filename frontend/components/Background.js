@@ -1,37 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
+import styled, {keyframes} from "styled-components";
 
-import styled from "styled-components";
+const colorChange = keyframes`
+0%{
+    background: #dfbb85;
+}
+20%{
+    background: #ffc97f;
+}
+40%{
+    background: #e4a562;
+}
+60%{
+    background: #9a4d31;
+}
+80%{
+    background: #fea531;
+}
+100%{
+    background: #dfbb85;
+}
+`;
 
 const BackgroundContainer = styled.div`
     background: #dfbb85;
-    position: absolute;
+    z-index: -1;
     width: 100vw;
     height: 100vh;
+    position: absolute;
     left: 0;
     top: 0;
-    overflow: hidden;
+    animation: ${colorChange} 20s linear infinite;
 `;
 
-// TODO: Implement Basketball Court Lines
-
-const MidCourtCircle = styled.div`
-    height: 3vh;
-    width: 3vw;
-    background: black;
-    border-radius: 5px;
-    text-align: center;
-`;
-
-class Background extends Component {
-
-    render() {
-        return (
-            <BackgroundContainer>
-                <MidCourtCircle/>
-            </BackgroundContainer>
-        )
-    }
-
-}
-
-export default Background;
+export default BackgroundContainer;

@@ -13,12 +13,12 @@ const Background = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto 100%;
-`
+`;
 
 const Player = posed.div({
     draggable: true,
     dragBounds: ({bounds}) => bounds,
-})
+});
 
 const Container = styled.div`
     height: 100vh;
@@ -28,7 +28,7 @@ const Container = styled.div`
     display: block;
     top: 10%;
     position: relative;
-`
+`;
 
 class Edit extends Component {
     constructor(props) {

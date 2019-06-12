@@ -15,7 +15,7 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: "EDIT",
+            page: "HOME",
         };
 
         this.renderPage = this.renderPage.bind(this);

@@ -21,9 +21,9 @@ class Navbar extends Component {
 
     render() {
         return (
-            <nav>
-                <a>This the Navbar</a>
-            </nav>
+            <Nav>
+                <Brand>This the Navbar</Brand>
+            </Nav>
         )
     }
 

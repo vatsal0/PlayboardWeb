@@ -32,4 +32,4 @@ class Navbar extends Component {
 
 }
 
-export default Navb
+export default Navbar;

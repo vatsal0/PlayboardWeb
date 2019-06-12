@@ -9,7 +9,7 @@ const Background = styled.div`
     left: 0;
     top: 0;
     overflow: hidden;
-`
+`;
 
 const Box = posed.div({
     hoverable: true,
@@ -19,7 +19,7 @@ const Box = posed.div({
     hover: { scale: 1.2 },
     drag: { scale: 1.1 },
     normal: {x: ({angle}) => Math.cos(angle/100)*100 + 100, y: ({angle}) => Math.sin(angle/100)*100 + 100},
-})
+});
 
 class Edit extends Component {
     constructor(props) {

@@ -22,15 +22,13 @@ const colorChange = keyframes`
 }
 `;
 
-const BackgroundContainer = styled.div`
+const Background = styled.div`
     background: #dfbb85;
-    z-index: -1;
     width: 100vw;
-    height: 100vh;
-    position: absolute;
-    left: 0;
-    top: 0;
-    animation: ${colorChange} 20s linear infinite;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
 `;
+// animation: ${colorChange} 20s linear infinite;
 
-export default BackgroundContainer;
+export default Background;

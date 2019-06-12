@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Nav = styled.nav`
     background: #f9c852;
     padding: 5px;
+    margin: 0 !important;
 `;
 
 const Brand = styled.a`
@@ -12,6 +13,7 @@ const Brand = styled.a`
     font-size: 2.5em;
     text-align: center;
     width: 100%;
+    position: relative;
 `;
 
 class Navbar extends Component {

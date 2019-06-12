@@ -6,17 +6,19 @@ import Background from '../components/Background';
 
 import Home from '../components/Home';
 import Edit from "../components/Edit";
+import Playback from "../components/Playback";
 
 const PAGES = {
     HOME: <Home />,
-    EDIT: <Edit />
+    EDIT: <Edit />,
+    PLAYBACK: <Playback />
 };
 
 class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: "EDIT",
+            page: "HOME",
         };
 
         this.renderPage = this.renderPage.bind(this);
@@ -28,7 +30,7 @@ class Main extends Component {
 
     render() {
         return (
-            <div>
+            <div style = {{overflow: "hidden"}}>
                 <Head>
                     <title>{"Playboard - " + this.state.page}</title>
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>

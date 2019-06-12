@@ -27,7 +27,7 @@ class Main extends Component {
 
     render() {
         return (
-            <div>
+            <div style = {{overflow: "hidden"}}>
                 <Head>
                     <title>{"Playboard - " + this.state.page}</title>
                     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>

@@ -5,10 +5,12 @@ import Navbar from '../components/Navbar';
 
 import Home from '../components/Home';
 import Edit from "../components/Edit";
+import Playback from "../components/Playback";
 
 const PAGES = {
     HOME: <Home />,
-    EDIT: <Edit />
+    EDIT: <Edit />,
+    PLAYBACK: <Playback />
 };
 
 class Main extends Component {

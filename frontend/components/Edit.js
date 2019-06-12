@@ -14,7 +14,7 @@ const Background = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto 100%;
-`
+`;
 
 const BottomBar = styled.div`
     background: #C1C38E;
@@ -33,7 +33,7 @@ const Dragger = posed.div({
 const Player = posed.div({
     draggable: true,
     dragBounds: ({bounds}) => bounds,
-})
+});
 
 const Container = styled.div`
     height: 75vh;
@@ -43,7 +43,7 @@ const Container = styled.div`
     display: block;
     top: 10%;
     position: relative;
-`
+`;
 
 class Edit extends Component {
     constructor(props) {

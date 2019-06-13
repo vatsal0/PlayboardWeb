@@ -26,9 +26,10 @@ const BottomBar = styled.div`
 `
 const Dragger = posed.div({
     draggable: "x",
-    dragBounds: ({bounds}) => bounds(),
+    dragBounds: {left: "0%", right: "2200%"},
     //open: {x: ({pos}) => pos/10}
 })
+
 
 const Player = posed.div({
     draggable: true,
@@ -63,7 +64,8 @@ class Edit extends Component {
         setInterval(() => {
             if (this.state.dragging) {
                 let pos = this.state.playerPositions[this.state.i]
-                this.setState({currentFrame: Animator.updateFrame(this.state.i, pos.x, pos.y)});
+                this.setState({currentFrame: Animator.updateFrame(this.state.currentFrame, this.state.playerPositions)});
+                
             }
         },200/3)
     }
@@ -73,6 +75,7 @@ class Edit extends Component {
     }
 
     render() {
+        
         return (
             <div style = {{background: '#F1C38E'}}>
                 <Background>
@@ -82,6 +85,7 @@ class Edit extends Component {
                             let rect = document.getElementById("Container").getBoundingClientRect();
                             let ox = (e.clientX - rect.left);
                             let oy = (e.clientY - rect.top);
+                            this.state.playerPositions.push({x: (ox*100/rect.width), y: (oy*100/rect.height)});
                             this.setState({
                                 playersPlaced: this.state.players.push(
                                     <Player key = {i+1} style={{
@@ -89,14 +93,14 @@ class Edit extends Component {
                                         height: "5vh",
                                         borderRadius: "10vh",
                                         position: "absolute",
-                                        left: (ox*100/rect.width)+"%",
-                                        top: (oy*100/rect.height)+"%",
+                                        left: this.state.playerPositions[i].x+"%",
+                                        top: this.state.playerPositions[i].y+"%",
                                         background: "#ff1c68",
                                         transformOrigin: "0% 0%"
                                     }} bounds = {{left: -ox, right: rect.width - ox, top: -oy, bottom: rect.height - oy}}
                                     onValueChange={{
-                                        x: x => this.state.playerPositions[i].x = (x + ox - rect.left)*100/rect.width,
-                                        y: y => this.state.playerPositions[i].y = (y + oy - rect.top)*100/rect.height
+                                        x: x => {this.state.playerPositions[i].x = (x + ox - rect.left)*100/rect.width},
+                                        y: y => {this.state.playerPositions[i].y = (y + oy - rect.top)*100/rect.height}
                                     }}
                                     onDragStart={(e) => {
                                         this.state.i = i;
@@ -108,7 +112,7 @@ class Edit extends Component {
                                     </Player>
                                 )
                             })
-                            this.state.playerPositions.push({x: (ox*100/rect.width), y: (oy*100/rect.height)});
+                            
                         }
                         }}>
                         {this.state.players}
@@ -122,7 +126,7 @@ class Edit extends Component {
                         height: "5vh",
                         borderRadius: "10vh",
                         position: "relative",
-                        left: (this.state.currentFrame*110/360) + "vh",
+                        left: 0,
                         top: "25%",
                         background: "#ff1c68",
                         transformOrigin: "0% 0%"
@@ -131,22 +135,44 @@ class Edit extends Component {
                         x: x => {
                             let rect = document.getElementById("bottom").getBoundingClientRect();
                             let drect = document.getElementById("dragger").getBoundingClientRect();
+                            this.setState({currentFrame: Math.floor(360*(drect.left - rect.left)/rect.width)})
+                            let newPositions = Animator.getFrame(this.state.currentFrame); 
+                            let positions = this.state.playerPositions;
+                            for(let i = 0; i < this.state.players.length; i++) {
+                                if (newPositions[i]) {
+                                    this.state.playerPositions[i] = newPositions[i];
+                                }
+                            }
+                            this.setState({playerPositions: positions});
                         }
                     }}
                     onDragEnd={(e) => {
                         let rect = document.getElementById("bottom").getBoundingClientRect();
                         let drect = document.getElementById("dragger").getBoundingClientRect();
-                        this.setState({currentFrame: (360*(drect.left - rect.left)/rect.width)})
+                        
                     }}
                     bounds = {() => {
                         let rect = document.getElementById("bottom").getBoundingClientRect();
                         let drect = document.getElementById("dragger").getBoundingClientRect();
-                        console.log({left: rect.left - drect.left, right: rect.right - drect.right})
+                        console.log({left: "0%", right: rect.width*100/drect.width + "%"})
+
+                        return {left: "0%", right: rect.width*100/drect.width + "%"}
                         return {left: rect.left - drect.left, right: rect.right - drect.right}
                     }}
                     >
 
                     </Dragger>
+                    <div id="ticker" style={{
+                        width: "1vh",
+                        height: "5vh",
+                        position: "relative",
+                        left: (this.state.currentFrame*110/360) + "vh",
+                        top: "25%",
+                        background: "#ff1c68",
+                        transformOrigin: "0% 0%"
+                    }}>
+
+                    </div>
                 </BottomBar>
             </div>
         )

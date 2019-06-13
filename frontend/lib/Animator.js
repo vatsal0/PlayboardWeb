@@ -25,15 +25,14 @@ class Animator {
         
     }
 
-    static updateFrame(playerIndex,x,y) {
-        if (currentFrame < PLAY_LENGTH * FRAMES_PER_SECOND - 1) {
-            frames[currentFrame][playerIndex] = {x:x, y:y};
-            currentFrame++;
-            console.log(JSON.stringify(frames));
-            
-            return currentFrame;
+    static updateFrame(frame, positions) {
+        if (frame < PLAY_LENGTH * FRAMES_PER_SECOND - 1) {
+            frames[frame] = positions;
+            console.log(frames[0]);
+            if (frame == 50) console.log(JSON.stringify(frames));
+            return ++frame;
         }
-        return currentFrame;
+        return ++frame;
     }
 
     //Start running the animation at a normal rate from an optional start frame
@@ -47,7 +46,9 @@ class Animator {
     }
 
     //Sets the playback frame of the animation, i.e. scrolling through it
-    static setFrame(frame) {currentFrame = frame;}
+    static setFrame(frame) {currentFrame = frame}
+
+    static getFrame(f) {if (f == 50) console.log(JSON.stringify(frames)); return frames[f];}
 
     //Add an action (movement, pass, or shot) at the specified frame. Checks to make sure that a very similar action is not already present (i.e. a player passing the ball twice) and the action is valid (can't shoot without the ball, or pass when the ball is already in a passing state)
     static addAction(frame, action) {

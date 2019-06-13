@@ -23,6 +23,7 @@
     "next": "^8.1.0",
     "npm": "^6.9.0",
     "react": "^16.8.6",
+    "react-bootstrap-typeahead": "^3.4.5",
     "react-dom": "^16.8.6",
     "react-pose": "^4.0.8",
     "styled-components": "^4.3.1"

@@ -14,7 +14,7 @@ const Background = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto 100%;
-`
+`;
 
 const BottomBar = styled.div`
     background: #C1C38E;
@@ -23,18 +23,19 @@ const BottomBar = styled.div`
     width: 110vh;
     margin-left: auto;
     margin-right: auto;
-`
+`;
+
 const Dragger = posed.div({
     draggable: "x",
     dragBounds: {left: "0%", right: "2200%"},
     //open: {x: ({pos}) => pos/10}
-})
+});
 
 
 const Player = posed.div({
     draggable: true,
     dragBounds: ({bounds}) => bounds,
-})
+});
 
 const Container = styled.div`
     height: 75vh;
@@ -44,7 +45,7 @@ const Container = styled.div`
     display: block;
     top: 10%;
     position: relative;
-`
+`;
 
 
 class Edit extends Component {

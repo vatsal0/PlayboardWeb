@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Typeahead } from 'react-bootstrap-typeahead';
 
 import Container from './Container';
 import Card from './Card';
@@ -21,8 +22,8 @@ class Home extends Component {
         this.props.handlePlayNavigation(this.state.playName);
     }
 
-    handlePlayInputChange(event) {
-        this.setState({ playName: event.target.value });
+    handlePlayInputChange(play) {
+        this.setState({ playName: play });
     }
 
     render() {
@@ -35,7 +36,7 @@ class Home extends Component {
 
                         <form>
                             <div className="form-group">
-                                <input className="form-control" type="text" placeholder="Name" value={this.state.playName} onChange={this.handlePlayInputChange}/>
+                                <Typeahead placeholder="Name" onChange={this.handlePlayInputChange} options={["Anthony's Layup", "Vatsal's Jump Shot Screen", "Aidan's Last Hope Play <3", "Aashir's Lock Down Defense"]}/>
                             </div>
                             <div className="form-group">
                                 <input className="form-control btn btn-primary btn-flat bg-success" type="submit" onClick={this.handleFormSubmit}/>

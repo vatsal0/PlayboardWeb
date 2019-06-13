@@ -29,6 +29,8 @@ class Animator {
         if (currentFrame < PLAY_LENGTH * FRAMES_PER_SECOND - 1) {
             frames[currentFrame][playerIndex] = {x:x, y:y};
             currentFrame++;
+            console.log(JSON.stringify(frames));
+            
             return currentFrame;
         }
         return currentFrame;

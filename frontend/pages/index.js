@@ -20,15 +20,20 @@ class Main extends Component {
 
         this.renderPage = this.renderPage.bind(this);
         this.onPlayNavigate = this.onPlayNavigate.bind(this);
+        this.navigateToPlayback = this.navigateToPlayback.bind(this);
     }
 
     onPlayNavigate(name) {
         this.setState({ page: "Edit", play: name});
     }
 
+    navigateToPlayback() {
+        this.setState({ page: "Playback"});
+    }
+
     renderPage() {
         if(this.state.page === "Edit") {
-             return <Edit play={this.state.play} />;
+             return <Edit navigateToPlayback={this.navigateToPlayback} play={this.state.play} />;
         } else if(this.state.page === "Playback") {
             return <Playback />;
         }

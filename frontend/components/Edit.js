@@ -118,7 +118,9 @@ class Edit extends Component {
                         }}>
                         {this.state.players}
                     </Container>
-                    
+                    {/*<div style={{right: 0, bottom: 5}}>*/}
+                        {/*<button className="btn btn-primary btn-large" onClick={this.props.navigateToPlayback}>Simulate</button>*/}
+                    {/*</div>*/}
                 </Background>
                 <BottomBar className="footer" id="bottom">
                     

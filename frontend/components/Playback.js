@@ -75,7 +75,7 @@ class Playback extends Component {
     }
 
     componentDidMount() {
-        var intervalID = setInterval(this.advancePlay, 100);
+        let intervalID = setInterval(this.advancePlay, 100);
         this.setState({intervalID : intervalID});
     }
 
